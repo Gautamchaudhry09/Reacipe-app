@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const logout = () => {
     setCookies("access_token", "");
-    window.localStorage.removeItem("userID");
-    window.localStorage.removeItem("userName");
+    localStorage.setItem("userID"),null;
+    localStorage.setItem("userName",null);
     navigate("/auth/login");
   };
 
