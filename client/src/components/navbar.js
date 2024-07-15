@@ -49,7 +49,7 @@ const Navbar = () => {
         >
           Make Your Recipes
         </Typography>
-        {username && (
+        {cookies.access_token && (
           <Typography variant="body1" sx={{ marginRight: 2 }}>
             USER: {username}
           </Typography>
