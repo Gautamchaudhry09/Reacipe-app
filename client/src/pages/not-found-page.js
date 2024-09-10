@@ -6,7 +6,7 @@ export const NotFoundPage = () => {
   return (
     <Container
       maxWidth="sm"
-      sx={{ marginTop: 4, marginBottom: 4, textAlign: "center" }}
+      sx={{ marginTop: 10, marginBottom: 4, textAlign: "center" }}
     >
       <Typography
         variant="h2"

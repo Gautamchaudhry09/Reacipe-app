@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const logout = () => {
     setCookies("access_token", "");
-    localStorage.setItem("userID","");
-    localStorage.setItem("userName","");
+    window.localStorage.removeItem("userID");
+    window.localStorage.removeItem("userName");
     navigate("/auth/login");
   };
 
@@ -49,7 +49,7 @@ const Navbar = () => {
         >
           Make Your Recipes
         </Typography>
-        {cookies.access_token && (
+        {username && (
           <Typography variant="body1" sx={{ marginRight: 2 }}>
             USER: {username}
           </Typography>

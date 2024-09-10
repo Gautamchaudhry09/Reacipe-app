@@ -14,6 +14,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { styled } from "@mui/material/styles";
 
 // Styled components
@@ -43,17 +44,28 @@ const StyledTextField = styled(TextField)({
 const StyledButton = styled(Button)({
   backgroundColor: "#1e90ff",
   color: "#fff",
+
+  fontSize: "1.1rem", // Increase font size
+  padding: "10px 24px", // Increase padding for a bigger button
+  borderRadius: "10px", // More rounded corners
   "&:hover": {
     backgroundColor: "#1c86ee",
+    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", // Increase shadow on hover
   },
 });
 
 const AddIngredientButton = styled(Button)({
   backgroundColor: "#ff1493",
   color: "#fff",
+  position: "absolute",
+  right: "0px",
   "&:hover": {
     backgroundColor: "#db7093",
   },
+});
+
+const RemoveButton = styled(IconButton)({
+  color: "#ff6347",
 });
 
 export const CreateRecipe = () => {
@@ -62,7 +74,7 @@ export const CreateRecipe = () => {
 
   const [recipe, setRecipe] = useState({
     name: "",
-    ingredients: [],
+    ingredients: [""],
     instructions: "",
     imageUrl: "",
     cookingTime: 0,
@@ -84,6 +96,11 @@ export const CreateRecipe = () => {
   const addIngredients = (event) => {
     event.preventDefault();
     setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ""] });
+  };
+
+  const removeIngredient = (index) => {
+    const ingredients = recipe.ingredients.filter((_, i) => i !== index);
+    setRecipe({ ...recipe, ingredients: ingredients });
   };
 
   const onSubmit = async (event) => {
@@ -153,25 +170,14 @@ export const CreateRecipe = () => {
           sx={{
             color: "#f0f0f0",
             marginBottom: 1,
+            position: "relative",
             textShadow: "0 0 5px yellow",
           }}
         >
           Ingredients:
-        </Typography>
-        <List>
-          {recipe.ingredients.map((ingredient, index) => (
-            <ListItem key={index}>
-              <StyledTextField
-                fullWidth
-                value={ingredient}
-                onChange={(event) => handleIngredientChange(event, index)}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Box
-          sx={{ display: "flex", justifyContent: "center", marginBottom: 2 }}
-        >
+          {/* <Box */}
+          {/* sx={{ display: "flex", justifyContent: "center", marginBottom: 2 }} */}
+          {/* > */}
           <AddIngredientButton
             variant="contained"
             startIcon={<AddIcon />}
@@ -179,7 +185,31 @@ export const CreateRecipe = () => {
           >
             Add Ingredient
           </AddIngredientButton>
-        </Box>
+          {/* </Box> */}
+        </Typography>
+        <List>
+          {recipe.ingredients.map((ingredient, index) => (
+            <ListItem
+              key={index}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                padding: 0,
+                marginBottom: 1,
+              }}
+            >
+              <StyledTextField
+                fullWidth
+                value={ingredient}
+                onChange={(event) => handleIngredientChange(event, index)}
+              />
+              <RemoveButton onClick={() => removeIngredient(index)}>
+                <RemoveIcon />
+              </RemoveButton>
+            </ListItem>
+          ))}
+        </List>
+
         <StyledButton type="submit" variant="contained">
           Create Recipe
         </StyledButton>
