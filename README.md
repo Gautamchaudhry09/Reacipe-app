@@ -1,7 +1,6 @@
 Please find below the video demo of the web application
 
-https://github.com/Gautamchaudhry09/Reacipe-app/assets/100997330/0416b735-800b-46e2-bf73-36626e060375
+![Demo:](https://github.com/Gautamchaudhry09/Reacipe-app/blob/master/Recipe-app%20Demo%20gif.gif?raw=true)
 
-https://ibb.co/Kht1p01
 
 Deployed link: https://awesome-recipe-app.netlify.app/
